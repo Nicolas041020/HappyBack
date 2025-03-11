@@ -38,8 +38,8 @@ public class PetController {
 
     @PatchMapping("/update/{id}")
     public ResponseEntity<Pet> updatePet(@PathVariable int id, @RequestBody Pet pet){
-       petService.updatePet(id,pet);
-        return ResponseEntity.ok().build();
+       
+        return ResponseEntity.ok(petService.updatePet(id,pet));
         
     }
 

@@ -50,13 +50,13 @@ public class PetService {
             return null; 
         }
     
-        if (pet.getName() != null) temp.setName(pet.getName());
-        if (pet.getRace() != null) temp.setRace(pet.getRace());
+        if (!pet.getName().isEmpty()) temp.setName(pet.getName());
+        if (!pet.getRace().isEmpty()) temp.setRace(pet.getRace());
         if (pet.getAmount_of_walks() != 0) temp.setAmount_of_walks(pet.getAmount_of_walks());
         if (pet.getAmount_of_food() != 0) temp.setAmount_of_food(pet.getAmount_of_food());
-        if (pet.getFood() != null) temp.setFood(pet.getFood());
+        if (!pet.getFood().isEmpty()) temp.setFood(pet.getFood());
         if (pet.getWeight() != 0) temp.setWeight(pet.getWeight());
-        if (pet.getDescription() != null) temp.setDescription(pet.getDescription());
+        if (!pet.getDescription().isEmpty()) temp.setDescription(pet.getDescription());
         if (pet.getAge() != 0) temp.setAge(pet.getAge());
         petRepository.save(temp);
         return temp;

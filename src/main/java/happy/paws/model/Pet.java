@@ -1,5 +1,7 @@
 package happy.paws.model;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -9,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,7 +20,7 @@ public class Pet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column()
+    @Column(name = "pet_id")
     private Integer petId;
     @Column()
     private String name;
@@ -39,6 +42,9 @@ public class Pet {
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
+    @OneToMany(mappedBy = "pet")
+    @JsonIgnore
+    private List<Consulta> consultas;
 
 
     
@@ -144,6 +150,14 @@ public class Pet {
 
     public void setAge(double age) {
         Age = age;
+    }
+
+    public List<Consulta> getConsultas() {
+        return consultas;
+    }
+
+    public void setConsultas(List<Consulta> consultas) {
+        this.consultas = consultas;
     }
 
     
