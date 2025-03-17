@@ -11,7 +11,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "USER_T")
 public class User {
 
     @Id

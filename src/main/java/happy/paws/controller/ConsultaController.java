@@ -1,5 +1,9 @@
 package happy.paws.controller;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +26,15 @@ public class ConsultaController {
 
     @PostMapping("/add/{id}")
     private ResponseEntity<Consulta> addConsulta(@RequestBody Consulta consulta, @PathVariable("id") int pet_id){
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date utilDate = sdf.parse(consulta.getFecha().toString()); 
+            consulta.setFecha(new java.sql.Date(utilDate.getTime())); 
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().build();
+        }
+    
         Consulta con = consultaService.addConsulta(consulta, pet_id);
         if (con!=null) return ResponseEntity.ok(con);
         return ResponseEntity.badRequest().build();

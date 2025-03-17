@@ -2,7 +2,7 @@ package happy.paws.model;
 
 import java.sql.Date;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,6 +22,7 @@ public class Consulta {
     @Column()
     private Integer id;
     @Column()
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date fecha;
     @Column()
     private String motivo;

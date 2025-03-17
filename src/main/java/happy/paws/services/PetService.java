@@ -66,4 +66,20 @@ public class PetService {
     public List<Pet> getAllPets(int id_owner){
         return petRepository.getAllPets(id_owner);
     }
+
+
+    public Pet getPetById(int id){
+        return petRepository.findById(id).orElse(null);
+    }
+
+    public Pet deletePet(int pet_id){
+        Pet pet = petRepository.findById(pet_id).orElse(null);
+       User user = userRepository.findById(pet.getUser().getUserId()).orElse(null); 
+       List<Pet> pets = user.getPets();
+       for (int i = 0; i < pets.size(); i++) {
+        if (pet.getId()== pets.get(i).getId()) pets.remove(i);
+       }
+       petRepository.delete(pet);
+       return pet;
+    }
 }

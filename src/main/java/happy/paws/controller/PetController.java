@@ -3,6 +3,7 @@ package happy.paws.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,4 +48,22 @@ public class PetController {
     public ResponseEntity<List<Pet>> getAllPets(@PathVariable int id_owner){
         return ResponseEntity.ok(petService.getAllPets(id_owner));
     }
+
+    @GetMapping("/getPet/{id_pet}")
+    public ResponseEntity<Pet> getPet(@PathVariable int id_pet){
+        return ResponseEntity.ok(petService.getPetById(id_pet));
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Pet> deletePet(@PathVariable("id") int pet_id){
+        Pet petR = petService.deletePet(pet_id);
+        if (petR != null) {
+            return ResponseEntity.ok(petR);
+        }else{
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
 }
+
+

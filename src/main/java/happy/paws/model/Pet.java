@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,9 +43,16 @@ public class Pet {
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
-    @OneToMany(mappedBy = "pet")
+    @OneToMany(mappedBy = "pet",cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<Consulta> consultas;
+    @OneToMany(mappedBy = "pet",cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<History> histories;
+    @OneToMany(mappedBy = "pet",cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<Recordatory> recordatories;
+
 
 
     
