@@ -33,6 +33,7 @@ public class PetController {
 
     @PostMapping("saves/{id_owner}")
     private ResponseEntity<Pet> savePets(@RequestBody List<Pet> pet, @PathVariable int id_owner){
+        pet.forEach(p -> System.out.println("Pet received: " + p.toString()));
         petService.savePets(pet,id_owner);
         return ResponseEntity.ok().build();
     }

@@ -38,7 +38,7 @@ public class Pet {
     @Column()
     private String description;
     @Column()
-    private double Age;
+    private double age;
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore
@@ -67,7 +67,7 @@ public class Pet {
         this.food = food;
         this.weight = weight;
         this.description = description;
-        Age = age;
+        this.age = age;
     }
 
     public Pet(){}
@@ -152,12 +152,21 @@ public class Pet {
         this.user = user;
     }
 
-    public double getAge() {
-        return Age;
+
+    public List<History> getHistories() {
+        return histories;
     }
 
-    public void setAge(double age) {
-        Age = age;
+    public void setHistories(List<History> histories) {
+        this.histories = histories;
+    }
+
+    public List<Recordatory> getRecordatories() {
+        return recordatories;
+    }
+
+    public void setRecordatories(List<Recordatory> recordatories) {
+        this.recordatories = recordatories;
     }
 
     public List<Consulta> getConsultas() {
@@ -166,6 +175,14 @@ public class Pet {
 
     public void setConsultas(List<Consulta> consultas) {
         this.consultas = consultas;
+    }
+
+    public double getAge() {
+        return age;
+    }
+
+    public void setAge(double age) {
+        this.age = age;
     }
 
     

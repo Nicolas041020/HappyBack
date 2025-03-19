@@ -42,7 +42,7 @@ public class Consulta {
 
     public Consulta(Integer id, Date fecha, String motivo, String estado, String veterinario, String resultado,
             Pet pet) {
-        this.id = id;
+       // this.id = id;
         this.fecha = fecha;
         this.motivo = motivo;
         this.estado = estado;

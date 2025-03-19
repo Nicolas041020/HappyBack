@@ -57,7 +57,7 @@ public class PetService {
         if (!pet.getFood().isEmpty()) temp.setFood(pet.getFood());
         if (pet.getWeight() != 0) temp.setWeight(pet.getWeight());
         if (!pet.getDescription().isEmpty()) temp.setDescription(pet.getDescription());
-        if (pet.getAge() != 0) temp.setAge(pet.getAge());
+        if (pet.getAge()!=0) temp.setAge(pet.getAge());
         petRepository.save(temp);
         return temp;
 
