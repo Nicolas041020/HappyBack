@@ -50,10 +50,10 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<User> logIn(@RequestBody User user){
+    public ResponseEntity<?> logIn(@RequestBody User user){
         User usert = userService.logIn(user.getUsername(),user.getPassword());
         if (usert != null) return ResponseEntity.ok(usert);
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.badRequest().body("Usuario No registrado");
     }
 
 }

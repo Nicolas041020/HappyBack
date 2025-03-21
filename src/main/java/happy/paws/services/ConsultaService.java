@@ -1,5 +1,7 @@
 package happy.paws.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import happy.paws.model.Consulta;
@@ -27,5 +29,9 @@ public class ConsultaService {
         consulta.setPet(pet);
         petRepository.save(pet);
         return consultaRepository.save(consulta);
+    }
+
+    public List<Consulta> getConsultas(int pet_id){
+        return consultaRepository.getConsultasByPetId(pet_id);
     }
 }

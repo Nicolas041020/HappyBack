@@ -30,14 +30,19 @@ public class History {
     @ManyToOne()
     @JoinColumn(name = "pet_id")
     private Pet pet;
+    @Column()
+    private String comments;
+    @Column()
+    private String reason;
 
 
-    public History(Integer id, Date date, String vaccine, int dosis, double cuantity) {
-        this.id = id;
+    public History(Date date, String vaccine, int dosis, double cuantity, String comments, String reason) {
         this.date = date;
         this.vaccine = vaccine;
         this.dosis = dosis;
         this.cuantity = cuantity;
+        this.comments = comments;
+        this.reason = reason;
     }
 
     public History(){}
@@ -88,6 +93,22 @@ public class History {
 
     public void setCuantity(double cuantity) {
         this.cuantity = cuantity;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 
     

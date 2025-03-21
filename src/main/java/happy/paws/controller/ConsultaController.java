@@ -1,10 +1,11 @@
 package happy.paws.controller;
 
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,6 +41,13 @@ public class ConsultaController {
         return ResponseEntity.badRequest().build();
             
         
+    }
+
+    @GetMapping("consultas/{id}")
+    private ResponseEntity<?> getConsultas(@PathVariable("id") int pet_id){
+       List<Consulta> lista = consultaService.getConsultas(pet_id);
+       if (lista!=null) return ResponseEntity.ok(lista);
+        return ResponseEntity.badRequest().body("no existen consultas con el id" + pet_id);
     }
 
 }
