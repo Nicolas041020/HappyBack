@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/Pet
     username: postgres
-    password: guntersitoSQL
+    password: nico
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -13,3 +13,9 @@ spring:
         format_sql: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+spring.mail.host: smtp.gmail.com
+spring.mail.port: 587
+spring.mail.username: trabajosupc89@gmail.com
+spring.mail.password: kezn qefk gqky xfpc
+spring.mail.properties.mail.smtp.auth: true
+spring.mail.properties.mail.smtp.starttls.enable: true

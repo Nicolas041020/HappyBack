@@ -19,19 +19,21 @@ public class Recordatory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column()
     private Integer id;
-    @Column()
+    @Column(name = "recordatory_date")
     private Date date;
     @Column()
     private String vaccine;
     @ManyToOne()
     @JoinColumn(name = "pet_id")
     private Pet pet;
+    @Column()
+    private boolean estado;
 
-    public Recordatory(Integer id, Date date, String vaccine, Pet pet) {
-        this.id = id;
+    public Recordatory(Date date, String vaccine) {
         this.date = date;
         this.vaccine = vaccine;
-        this.pet = pet;
+        this.estado = false;
+        
     }
     
     public Recordatory(){}
@@ -66,6 +68,14 @@ public class Recordatory {
 
     public void setPet(Pet pet) {
         this.pet = pet;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
     

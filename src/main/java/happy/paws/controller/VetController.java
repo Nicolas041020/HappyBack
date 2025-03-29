@@ -25,10 +25,10 @@ public class VetController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> logIn(@RequestBody Vet vet){
+    public ResponseEntity<Vet> logIn(@RequestBody Vet vet){
         Vet vetr = vetService.logIn(vet.getEmail(),vet.getIdentification());
         if (vetr != null) return ResponseEntity.ok(vetr);
-        return ResponseEntity.badRequest().body("Veterinario No registrado");
+        return null;
     }
 
 }

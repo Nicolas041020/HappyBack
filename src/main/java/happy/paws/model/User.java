@@ -2,8 +2,11 @@ package happy.paws.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,13 +37,21 @@ public class User {
     private String email;
     @Column()
     private String phoneNumber;
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Pet> pets;
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Chat> chats;
+    @JsonIgnore
+    @OneToMany(mappedBy = "remitenteUsuario")
+    private List<Mensaje> mensajesEnviados;
+    @JsonIgnore
+    @OneToMany(mappedBy = "destinatarioUsuario")
+    private List<Mensaje> mensajesRecibidos;
 
-
-    public User(Integer userId, String username, String password, String firstname, String lastname, String identification,
+    public User(String username, String password, String firstname, String lastname, String identification,
             String address, String email, String phoneNumber) {
-        this.userId = userId;
         this.username = username;
         this.password = password;
         this.firstname = firstname;
@@ -131,6 +142,30 @@ public class User {
 
     public void setPets(List<Pet> pets) {
         this.pets = pets;
+    }
+
+    public List<Chat> getChats() {
+        return chats;
+    }
+
+    public void setChats(List<Chat> chats) {
+        this.chats = chats;
+    }
+
+    public List<Mensaje> getMensajesEnviados() {
+        return mensajesEnviados;
+    }
+
+    public void setMensajesEnviados(List<Mensaje> mensajesEnviados) {
+        this.mensajesEnviados = mensajesEnviados;
+    }
+
+    public List<Mensaje> getMensajesRecibidos() {
+        return mensajesRecibidos;
+    }
+
+    public void setMensajesRecibidos(List<Mensaje> mensajesRecibidos) {
+        this.mensajesRecibidos = mensajesRecibidos;
     }
     
     

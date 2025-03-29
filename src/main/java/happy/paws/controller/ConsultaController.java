@@ -44,11 +44,10 @@ public class ConsultaController {
     }
 
     @GetMapping("consultas/{id}")
-    private ResponseEntity<?> getConsultas(@PathVariable("id") int pet_id){
+    private ResponseEntity<List<Consulta>> getConsultas(@PathVariable("id") int pet_id){
        List<Consulta> lista = consultaService.getConsultas(pet_id);
        if (lista!=null) return ResponseEntity.ok(lista);
-        return ResponseEntity.badRequest().build();
-        //return ResponseEntity.badRequest().body("no existen consultas con el id" + pet_id);
+       return null;
     }
 
 }
