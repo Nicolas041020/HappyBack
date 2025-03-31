@@ -6,5 +6,5 @@ import happy.paws.model.Paseador;
 
 public interface PaseadorRepository extends JpaRepository<Paseador,Integer>{
 
-    
+    Paseador findByEmail(String email);
 }

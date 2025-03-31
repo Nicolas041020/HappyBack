@@ -25,6 +25,8 @@ public class Paseador {
     private String email;
 
     private String phoneNum;
+
+    private String passw;
     @JsonIgnore
     @OneToMany(mappedBy = "paseador")
     List<Chat> chats = new ArrayList<>();
@@ -35,10 +37,13 @@ public class Paseador {
     @OneToMany(mappedBy = "destinatarioPaseador")
     private List<Mensaje> mensajesRecibidos =  new ArrayList<>();
 
-    public Paseador(String name, String email, String phoneNum) {
+    
+
+    public Paseador(String name, String email, String phoneNum, String passw) {
         this.name = name;
         this.email = email;
         this.phoneNum = phoneNum;
+        this.passw = passw;
     }
 
     public Paseador(){}
@@ -97,6 +102,14 @@ public class Paseador {
 
     public void setMensajesRecibidos(List<Mensaje> mensajesRecibidos) {
         this.mensajesRecibidos = mensajesRecibidos;
+    }
+
+    public String getPassw() {
+        return passw;
+    }
+
+    public void setPassw(String passw) {
+        this.passw = passw;
     }
 
     

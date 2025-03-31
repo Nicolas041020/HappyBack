@@ -11,13 +11,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer{
 @Override
     public void addCorsMappings(CorsRegistry registry) {
-     //   registry.addMapping("/**")
-     //           .allowedOrigins("*")
-     //           .allowedMethods("*")
-     //           .allowedHeaders("*");
-     registry.addMapping("/ws/**") // WebSocket endpoint
-                .allowedOriginPatterns("http://localhost:*") // Permite cualquier puerto en localhost
-                .allowedMethods("GET", "POST")
-                .allowCredentials(true);
+        registry.addMapping("/**") 
+        .allowedOriginPatterns("http://localhost:*", "http://10.0.2.2:*", "http://192.168.1.100:*") // Permite cualquier puerto
+        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+        .allowedHeaders("*")
+        .allowCredentials(true);
+    // registry.addMapping("/ws/**") // WebSocket endpoint
+      //          .allowedOriginPatterns("http://localhost:*") // Permite cualquier puerto en localhost
+        //        .allowedMethods("GET", "POST")
+          //      .allowCredentials(true);
     }
 }

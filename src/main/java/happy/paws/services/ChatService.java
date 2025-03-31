@@ -58,6 +58,7 @@ public class ChatService {
         Mensaje msg = new Mensaje();
         msg.setContent(content);
         msg.setTimest(LocalDateTime.now());
+        msg.setChat(chat); //para probar si no pasa el id chat como null
         if (esUser) {
             msg.setRemitenteUsuario(usuario);
             msg.setDestinatarioPaseador(paseador);

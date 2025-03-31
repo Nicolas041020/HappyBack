@@ -3,6 +3,8 @@ package happy.paws.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,6 +28,7 @@ public class Chat {
     @ManyToOne
     private Paseador paseador;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "chat",cascade = CascadeType.ALL)
     private List<Mensaje> mensajes = new ArrayList<>();
 

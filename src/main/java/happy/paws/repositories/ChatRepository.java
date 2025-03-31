@@ -10,4 +10,5 @@ import happy.paws.model.User;
 
 public interface ChatRepository extends JpaRepository<Chat,Integer> {
     Optional<Chat> findByUserAndPaseador(User user, Paseador Paseador);
+
 }
