@@ -1,5 +1,7 @@
 package happy.paws.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 import org.springframework.http.ResponseEntity;
@@ -28,7 +30,17 @@ public class RecordatoryController {
 
     @PostMapping("/add/{id}")
     public ResponseEntity<Recordatory> add(@RequestBody Recordatory recordatory, @PathVariable("id") int pet_id) throws Exception{
-         LocalDate localDate = recordatory.getDate().toLocalDate().plusDays(1);
+        
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date utilDate = sdf.parse(recordatory.getDate().toString()); 
+            recordatory.setDate(new java.sql.Date(utilDate.getTime())); 
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().build();
+        }
+
+        LocalDate localDate = recordatory.getDate().toLocalDate().plusDays(1);
         recordatory.setDate(java.sql.Date.valueOf(localDate));
         Recordatory rec = recordatoryService.add(recordatory, pet_id);
         if(rec!=null) return ResponseEntity.ok(rec);

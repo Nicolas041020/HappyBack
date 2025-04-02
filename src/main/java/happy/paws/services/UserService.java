@@ -1,7 +1,5 @@
 package happy.paws.services;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 import happy.paws.model.User;
@@ -53,9 +51,5 @@ public class UserService {
             return user;
         }
         return null;
-    }
-
-    public List<User> getAllUsers(){
-        return userRepository.findAll();
     }
 }
