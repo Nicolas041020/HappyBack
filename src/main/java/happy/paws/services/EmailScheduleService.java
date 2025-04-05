@@ -26,7 +26,7 @@ public class EmailScheduleService {
 
 
 
-    @Scheduled(cron = "0 4 16 * * *", zone = "America/Bogota") // Configurar hora
+    @Scheduled(cron = "0 17 14 * * *", zone = "America/Bogota") // Configurar hora
     public void enviarCorreoDiario() throws Exception {
         System.out.println("Entra");
         List<Recordatory> lista = recordatoryRepository.rec();

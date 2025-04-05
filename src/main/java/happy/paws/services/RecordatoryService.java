@@ -1,5 +1,8 @@
 package happy.paws.services;
 
+import java.sql.Date;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import happy.paws.model.Pet;
@@ -48,6 +51,26 @@ public class RecordatoryService {
 
     }
 
-    
+    public List<Recordatory> verRecs(int user_id){
+        return recordatoryRepository.findAllByUserId(user_id);
+    }
+
+    public Recordatory updateRecordatory(Recordatory recordatory,int recordatory_id){
+        Recordatory rec = recordatoryRepository.findById(recordatory_id).orElse(null);
+        if (recordatory.getDate()!= null)  rec.setDate(recordatory.getDate());
+        if(!recordatory.getVaccine().isEmpty()) rec.setVaccine(recordatory.getVaccine());
+        return recordatoryRepository.save(rec);
+    }
+
+    public Recordatory getRec(int rec_id){
+        return recordatoryRepository.findById(rec_id).orElse(null);
+    }
+
+    public Recordatory deleteRec(int rec_id){
+        Recordatory rec = recordatoryRepository.findById(rec_id).orElse(null);
+        recordatoryRepository.delete(rec);
+        return rec;
+        
+    }
 
 }
