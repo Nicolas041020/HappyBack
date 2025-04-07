@@ -25,18 +25,22 @@ public class Vet {
     @Column()
     private String phoneNumber;
     @Column()
+    private String passw;
+    @Column()
     private String speciality;
 
     public Vet(){}
     
-    public Vet( String name, @NonNull String identification,@NonNull String email,String phoneNumber,
-     String speciality) {
+
+    public Vet(String name, String identification, String email, String phoneNumber, String passw, String speciality) {
         this.name = name;
         this.identification = identification;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.passw = passw;
         this.speciality = speciality;
     }
+
 
     public Integer getVet_id() {
         return vet_id;
@@ -84,6 +88,16 @@ public class Vet {
 
     public void setSpeciality(String speciality) {
         this.speciality = speciality;
+    }
+
+
+    public String getPassw() {
+        return passw;
+    }
+
+
+    public void setPassw(String passw) {
+        this.passw = passw;
     }
 
     

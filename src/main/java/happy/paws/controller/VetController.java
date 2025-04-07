@@ -26,7 +26,7 @@ public class VetController {
 
     @PostMapping("/login")
     public ResponseEntity<Vet> logIn(@RequestBody Vet vet){
-        Vet vetr = vetService.logIn(vet.getEmail(),vet.getIdentification());
+        Vet vetr = vetService.logIn(vet.getIdentification(),vet.getPassw());
         if (vetr != null) return ResponseEntity.ok(vetr);
         return null;
     }

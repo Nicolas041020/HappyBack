@@ -11,4 +11,6 @@ public interface VetRepository extends JpaRepository<Vet,Integer>{
 
     @Query(value = "SELECT * FROM vet WHERE email =:emailr",nativeQuery = true)
     Vet getbyEmail(@Param("emailr") String emailr);
+
+    Vet findByIdentification(String id);
 }

@@ -18,9 +18,9 @@ public class VetService {
         return vetRepository.save(vet);
     }
 
-    public Vet logIn(String email, String id){
-       Vet vet = vetRepository.getbyEmail(email);
-       if (vet!=null && vet.getIdentification().equals(id)) return vet;
+    public Vet logIn(String ide, String passw){
+       Vet vet = vetRepository.findByIdentification(ide);
+       if (vet!=null && vet.getPassw().equals(passw)) return vet;
         return null;
     }
 
