@@ -67,10 +67,16 @@ public class PetService {
         return petRepository.getAllPets(id_owner);
     }
 
+    public List<Pet> getAllPetsT(){
+        return petRepository.findAll();
+    }
+
 
     public Pet getPetById(int id){
         return petRepository.findById(id).orElse(null);
     }
+
+
 
     public Pet deletePet(int pet_id){
         Pet pet = petRepository.findById(pet_id).orElse(null);

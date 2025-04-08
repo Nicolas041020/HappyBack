@@ -31,8 +31,13 @@ public class PaseadorController {
     }
 
     @GetMapping("/paseadores")
-    public List<Paseador> getPaseadores(){
-        return paseadorService.getPaseadores();
+    public ResponseEntity<List<Paseador>> getPaseadores(){
+        List<Paseador> paseadores = paseadorService.getPaseadores();
+        if (paseadores != null) return ResponseEntity.ok(paseadores);
+        return null;
+        
+        //return paseadorService.getPaseadores();
+        
     }
 
     @PostMapping("/login")

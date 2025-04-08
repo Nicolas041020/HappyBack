@@ -1,5 +1,7 @@
 package happy.paws.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import happy.paws.model.Vet;
@@ -16,6 +18,11 @@ public class VetService {
 
     public Vet addVet(Vet vet){
         return vetRepository.save(vet);
+    }
+
+    public List<Vet> getAllVets(){
+        List<Vet> lista = vetRepository.findAll();
+        return !lista.isEmpty() ? lista : null;
     }
 
     public Vet logIn(String ide, String passw){

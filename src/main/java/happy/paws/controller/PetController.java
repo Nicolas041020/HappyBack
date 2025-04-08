@@ -55,6 +55,12 @@ public class PetController {
         return ResponseEntity.ok(petService.getPetById(id_pet));
     }
 
+    @GetMapping("/getAllPets")
+    public ResponseEntity<List<Pet>> getAllPets(){
+        return ResponseEntity.ok(petService.getAllPetsT());
+    }
+    
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Pet> deletePet(@PathVariable("id") int pet_id){
         Pet petR = petService.deletePet(pet_id);
