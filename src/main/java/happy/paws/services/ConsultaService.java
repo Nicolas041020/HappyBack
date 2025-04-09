@@ -34,4 +34,29 @@ public class ConsultaService {
     public List<Consulta> getConsultas(int pet_id){
         return consultaRepository.getConsultasByPetId(pet_id);
     }
+
+    public List<Consulta> getCons(){
+        return consultaRepository.findAll();
+    }
+
+    public Consulta updateConsulta(Consulta consulta, int id){
+        Consulta con = consultaRepository.findById(id).orElse(null);
+        if (con == null) {
+            return null;
+        }
+        if(consulta.getFecha()!=null) con.setFecha(consulta.getFecha());
+        if(!consulta.getMotivo().isEmpty()) con.setMotivo(consulta.getMotivo());
+        if(!consulta.getEstado().isEmpty()) con.setEstado(consulta.getEstado());
+        if(!consulta.getVeterinario().isEmpty()) con.setVeterinario(consulta.getVeterinario());
+        if(!consulta.getResultado().isEmpty()) con.setResultado(consulta.getResultado());
+
+        consultaRepository.save(con);
+        return con;
+    }
+
+    public Consulta deleteConsulta(int id){
+        Consulta con = consultaRepository.findById(id).orElse(null);
+        consultaRepository.delete(con);
+        return con;
+    }
 }
