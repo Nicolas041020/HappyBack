@@ -1,5 +1,6 @@
 package happy.paws.controller;
 
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -82,5 +83,25 @@ public class RecordatoryController {
         if (reco!= null) {
             return ResponseEntity.ok(reco);
            }return ResponseEntity.badRequest().build();
+    }
+
+    //estadisticas
+    @GetMapping("/between/{fecha1}/{fecha2}")
+    public ResponseEntity<List<Recordatory>> getBetween(@PathVariable("fecha1")String fecha1,@PathVariable("fecha2")String fecha2){
+        Date d1,d2;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date utilDate = sdf.parse(fecha1);
+            java.util.Date utilDate2 = sdf.parse(fecha2); 
+            d1 = new java.sql.Date(utilDate.getTime());
+            d2 = new java.sql.Date(utilDate2.getTime());
+             
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().build();
+        }
+        List<Recordatory> list = recordatoryService.getBetween(d1, d2);
+        if(list!=null) return ResponseEntity.ok(list);
+        return ResponseEntity.badRequest().build();
     }
 }

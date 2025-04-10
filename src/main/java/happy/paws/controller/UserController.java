@@ -63,4 +63,10 @@ public class UserController {
     public ResponseEntity<List<User>> getAllUsers(){
         return ResponseEntity.ok(userService.getAllUsers());
     }
+
+    //estadisticas
+    @GetMapping("/most")
+    public ResponseEntity<List<User>> most(){
+        return ResponseEntity.ok(userService.getUserByMostP());
+    }
 }

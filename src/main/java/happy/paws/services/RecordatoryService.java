@@ -73,4 +73,8 @@ public class RecordatoryService {
         
     }
 
+    public List<Recordatory> getBetween(Date fecha1,Date fecha2){
+        return recordatoryRepository.findRecordatoriesBetween(fecha1, fecha2);
+    }
+
 }

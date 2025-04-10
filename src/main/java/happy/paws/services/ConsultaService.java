@@ -59,4 +59,12 @@ public class ConsultaService {
         consultaRepository.delete(con);
         return con;
     }
+
+    public Pet mascotaFrec(){
+        return consultaRepository.getMascotaMasFreqC();
+    }
+
+    public List<Pet> state(String state){
+        return consultaRepository.findByState(state);
+    }
 }

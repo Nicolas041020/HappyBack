@@ -13,4 +13,6 @@ public interface HistoryRepository extends JpaRepository<History,Integer> {
     @Query(value = "SELECT r FROM History r WHERE r.pet= :petId", nativeQuery = true)
     List<History> findAllByPetId(@Param("userId") Integer petId);
 
+    
+
 }

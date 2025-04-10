@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import happy.paws.model.Consulta;
+import happy.paws.model.Pet;
 import happy.paws.model.Recordatory;
 import happy.paws.services.ConsultaService;
 
@@ -90,5 +91,15 @@ public class ConsultaController {
 
     }
 
+    //estadisticas
+    @GetMapping("/freq")
+    public ResponseEntity<Pet> mostFreq(){
+        return ResponseEntity.ok(consultaService.mascotaFrec());
+    }
+    //estadisticas
+    @GetMapping("/state/{estado}")
+    public ResponseEntity<List<Pet>> findByEstado(@PathVariable("estado") String estado){
+        return ResponseEntity.ok(consultaService.state(estado));
+    }
 
 }
