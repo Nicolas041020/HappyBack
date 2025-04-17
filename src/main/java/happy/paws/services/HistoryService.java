@@ -1,5 +1,6 @@
 package happy.paws.services;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -59,5 +60,13 @@ public class HistoryService {
         History his = historyRepository.findById(id).orElse(null);
         historyRepository.delete(his);
         return his;
+    }
+
+    public List<History> findVaccinesB(Date fecha1,Date fecha2){
+        return historyRepository.findVaccinesBetween(fecha1,fecha2);
+    }
+
+    public int getNumVaccines(String vaccine){
+        return historyRepository.countByVaccine(vaccine);
     }
 }

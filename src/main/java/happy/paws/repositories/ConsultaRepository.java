@@ -21,5 +21,8 @@ public interface ConsultaRepository extends JpaRepository<Consulta,Integer>{
     @Query(value = "SELECT r.pet_id FROM consulta r WHERE r.resultado= :state", nativeQuery = true)
     List<Pet> findByState(@Param("state") String state);
 
+    @Query(value = "SELECT COUNT(*) FROM consulta WHERE pet_id = :petId", nativeQuery = true)
+    int countVisitasByPetId(@Param("petId") Integer petId);
+
 
 }

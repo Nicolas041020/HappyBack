@@ -67,4 +67,8 @@ public class ConsultaService {
     public List<Pet> state(String state){
         return consultaRepository.findByState(state);
     }
+
+    public int countVisitsById(int pet_id){
+        return consultaRepository.countVisitasByPetId(pet_id);
+    }
 }

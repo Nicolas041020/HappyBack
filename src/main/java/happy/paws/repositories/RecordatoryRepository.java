@@ -14,7 +14,10 @@ public interface RecordatoryRepository extends JpaRepository <Recordatory,Intege
     @Query(value = "SELECT * FROM RECORDATORY r WHERE DATE(r.recordatory_date) = CURRENT_DATE AND r.estado = false", nativeQuery = true)
     List<Recordatory> rec();
 
-    @Query(value = "SELECT r FROM Recordatory r WHERE r.pet.owner.id = :userId", nativeQuery = true)
+    @Query(value = "SELECT r.* FROM recordatory r " +
+               "JOIN pet p ON r.pet_id = p.pet_id " +
+               "JOIN user_t o ON p.user_id = o.user_id " +
+               "WHERE o.user_id = :userId", nativeQuery = true)
     List<Recordatory> findAllByUserId(@Param("userId") Integer userId);
 
     Recordatory findByVaccineAndDate(String vaccine, Date date);

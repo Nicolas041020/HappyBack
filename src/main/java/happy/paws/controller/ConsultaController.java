@@ -102,4 +102,10 @@ public class ConsultaController {
         return ResponseEntity.ok(consultaService.state(estado));
     }
 
+    @GetMapping("/contarV/{pet_id}")
+    public ResponseEntity<Integer> countVisitsPetId(@PathVariable("pet_id") int pet_id){
+        int num = consultaService.countVisitsById(pet_id);
+        if(num!=0) return ResponseEntity.ok(num);
+        return null;
+    }
 }
