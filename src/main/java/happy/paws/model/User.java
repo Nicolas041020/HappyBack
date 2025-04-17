@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -49,6 +49,9 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy = "destinatarioUsuario")
     private List<Mensaje> mensajesRecibidos;
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Request> requests;
+
 
     public User(String username, String password, String firstname, String lastname, String identification,
             String address, String email, String phoneNumber) {
@@ -166,6 +169,14 @@ public class User {
 
     public void setMensajesRecibidos(List<Mensaje> mensajesRecibidos) {
         this.mensajesRecibidos = mensajesRecibidos;
+    }
+
+    public List<Request> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
     }
     
     

@@ -22,7 +22,7 @@ public interface RecordatoryRepository extends JpaRepository <Recordatory,Intege
 
     Recordatory findByVaccineAndDate(String vaccine, Date date);
 
-    @Query("SELECT r FROM Recordatory r WHERE r.recordatoryDate BETWEEN :fecha1 AND :fecha2")
+    @Query(value = "SELECT r FROM Recordatory r WHERE r.recordatoryDate BETWEEN :fecha1 AND :fecha2", nativeQuery = true)
     List<Recordatory> findRecordatoriesBetween(@Param("fecha1") Date fecha1, @Param("fecha2") Date fecha2);
     
 

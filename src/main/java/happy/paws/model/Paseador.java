@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -36,6 +37,8 @@ public class Paseador {
     @JsonIgnore
     @OneToMany(mappedBy = "destinatarioPaseador")
     private List<Mensaje> mensajesRecibidos =  new ArrayList<>();
+    @OneToMany(mappedBy = "paseador", cascade = CascadeType.ALL)
+    private List<Request> requests;
 
     
 
@@ -110,6 +113,14 @@ public class Paseador {
 
     public void setPassw(String passw) {
         this.passw = passw;
+    }
+
+    public List<Request> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
     }
 
     
