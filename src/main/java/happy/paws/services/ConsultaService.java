@@ -39,6 +39,14 @@ public class ConsultaService {
         return consultaRepository.findAll();
     }
 
+    public Consulta getConsultaById(int id){
+        return consultaRepository.findById(id).orElse(null);
+    }
+
+    //public List<Consulta> verConsultas(int user_id){
+    //    return consultaRepository.findAllByUserId(user_id);
+    //}
+
     public Consulta updateConsulta(Consulta consulta, int id){
         Consulta con = consultaRepository.findById(id).orElse(null);
         if (con == null) {

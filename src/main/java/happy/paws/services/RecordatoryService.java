@@ -55,6 +55,10 @@ public class RecordatoryService {
         return recordatoryRepository.findAllByUserId(user_id);
     }
 
+    public List<Recordatory> getAllRecs(){
+        return recordatoryRepository.findAll();
+    }
+
     public Recordatory updateRecordatory(Recordatory recordatory,int recordatory_id){
         Recordatory rec = recordatoryRepository.findById(recordatory_id).orElse(null);
         if (recordatory.getDate()!= null)  rec.setDate(recordatory.getDate());

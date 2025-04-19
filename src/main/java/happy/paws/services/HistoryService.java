@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import happy.paws.model.Consulta;
 import happy.paws.model.History;
 import happy.paws.model.Pet;
 import happy.paws.repositories.HistoryRepository;
@@ -37,6 +38,10 @@ public class HistoryService {
 
     public List<History> getHistoryByPetId(int petId){
         return historyRepository.findAllByPetId(petId);
+    }
+
+    public History getHistoryById(int id){
+        return historyRepository.findById(id).orElse(null);
     }
 
     public History updateHistory(History history, int id){

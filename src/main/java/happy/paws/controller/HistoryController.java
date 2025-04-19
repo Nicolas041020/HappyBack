@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import happy.paws.model.Consulta;
 import happy.paws.model.History;
 import happy.paws.services.HistoryService;
 
@@ -46,6 +47,11 @@ public class HistoryController {
         if(his!=null) return ResponseEntity.ok(his);
         return null;
 
+    }
+
+    @GetMapping("/find/{his_id}")
+    private ResponseEntity<History> getHistory(@PathVariable("his_id") int his_id){
+        return ResponseEntity.ok(historyService.getHistoryById(his_id));
     }
 
     @PatchMapping("/update/{id}")

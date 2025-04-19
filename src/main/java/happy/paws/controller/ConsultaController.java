@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import happy.paws.model.Consulta;
 import happy.paws.model.Pet;
-import happy.paws.model.Recordatory;
 import happy.paws.services.ConsultaService;
 
 @RestController
@@ -61,6 +60,12 @@ public class ConsultaController {
         if (lista!=null) return ResponseEntity.ok(lista);
         return null;
     }
+
+    @GetMapping("/find/{con_id}")
+    private ResponseEntity<Consulta> getConsulta(@PathVariable("con_id") int con_id){
+        return ResponseEntity.ok(consultaService.getConsultaById(con_id));
+    }
+
 
     @PatchMapping("/update/{con_id}")
     public ResponseEntity<Consulta> updateConsulta (@RequestBody Consulta consulta, @PathVariable("con_id") int con_id){

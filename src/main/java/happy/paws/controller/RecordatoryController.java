@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,6 +58,13 @@ public class RecordatoryController {
        if (reco!= null) {
         return ResponseEntity.ok(reco);
        }return ResponseEntity.badRequest().build();
+    }
+
+    @GetMapping("/allRecs")
+    public ResponseEntity<List<Recordatory>> allRecs(){
+       List<Recordatory> lista = recordatoryService.getAllRecs();
+       if (lista!=null) return ResponseEntity.ok(lista);
+        return null;
     }
 
     @PatchMapping("/update/{rec_id}")
