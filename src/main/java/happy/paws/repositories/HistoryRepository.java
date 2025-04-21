@@ -14,10 +14,13 @@ public interface HistoryRepository extends JpaRepository<History,Integer> {
     @Query(value = "SELECT r FROM History r WHERE r.pet= :petId", nativeQuery = true)
     List<History> findAllByPetId(@Param("userId") Integer petId);
 
-    @Query(value = "SELECT r FROM History r WHERE r.date BETWEEN :fecha1 AND :fecha2", nativeQuery= true)
+    @Query(value = "SELECT h.* FROM History h WHERE h.date BETWEEN :fecha1 AND :fecha2", nativeQuery= true)
     List<History> findVaccinesBetween(@Param("fecha1") Date fecha1, @Param("fecha2") Date fecha2);
 
     @Query(value = "SELECT COUNT(*) FROM history WHERE vaccine = :vaccine", nativeQuery = true)
     Integer countByVaccine(@Param("vaccine") String vaccine);
+
+    @Query(value = "SELECT DISTINCT h.vaccine FROM history h",nativeQuery = true)
+    List<String> findAllDistinctTipos();
  
 }

@@ -3,6 +3,8 @@ package happy.paws.model;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -37,8 +39,10 @@ public class User {
     private String email;
     @Column()
     private String phoneNumber;
-    @JsonIgnore
+    //@JsonIgnore
     @OneToMany(mappedBy = "user")
+    //@JsonManagedReference
+    @JsonIgnoreProperties("user")
     private List<Pet> pets;
     @JsonIgnore
     @OneToMany(mappedBy = "user")

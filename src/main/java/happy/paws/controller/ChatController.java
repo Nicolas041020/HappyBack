@@ -54,8 +54,8 @@ public class ChatController {
     //}
 
     @MessageMapping("/chat")
-public void enviarMensaje(MensajeDTO mensajeDTO) throws JsonProcessingException {
-    System.out.println("MSG " + mensajeDTO.getContent());
+    public void enviarMensaje(MensajeDTO mensajeDTO) throws JsonProcessingException {
+    //System.out.println("MSG " + mensajeDTO.getContent());
     Mensaje mensaje = chatService.enviarMsg(
             mensajeDTO.getUsuarioId(),
             mensajeDTO.getPaseadorId(),

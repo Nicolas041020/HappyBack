@@ -75,6 +75,12 @@ public class HistoryController {
 
     }
 
+    @GetMapping("/tipos")
+    public ResponseEntity<List<String>> getTiposVacuna() {
+        List<String> tipos = historyService.obtenerTiposVacuna();
+        return ResponseEntity.ok(tipos);
+    }
+
        //estadisticas
     @GetMapping("/between/{fecha1}/{fecha2}")
     public ResponseEntity<List<History>> getVaccinesBetween(@PathVariable("fecha1")String fecha1,@PathVariable("fecha2")String fecha2){

@@ -74,4 +74,8 @@ public class HistoryService {
     public int getNumVaccines(String vaccine){
         return historyRepository.countByVaccine(vaccine);
     }
+
+    public List<String> obtenerTiposVacuna() {
+        return historyRepository.findAllDistinctTipos();
+    }
 }

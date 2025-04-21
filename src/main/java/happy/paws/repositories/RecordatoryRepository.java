@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import happy.paws.model.History;
 import happy.paws.model.Recordatory;
 
 public interface RecordatoryRepository extends JpaRepository <Recordatory,Integer>{
@@ -22,9 +23,15 @@ public interface RecordatoryRepository extends JpaRepository <Recordatory,Intege
 
     Recordatory findByVaccineAndDate(String vaccine, Date date);
 
-    @Query(value = "SELECT r FROM Recordatory r WHERE r.recordatoryDate BETWEEN :fecha1 AND :fecha2", nativeQuery = true)
+
+    @Query(value = "SELECT * FROM Recordatory r WHERE r.recordatory_date BETWEEN :fecha1 AND :fecha2", nativeQuery = true)
     List<Recordatory> findRecordatoriesBetween(@Param("fecha1") Date fecha1, @Param("fecha2") Date fecha2);
+
+    //@Query(value = "SELECT r FROM Recordatory r WHERE r.recordatoryDate BETWEEN :fecha1 AND :fecha2", nativeQuery = true)
+    //List<Recordatory> findRecordatoriesBetween(@Param("fecha1") Date fecha1, @Param("fecha2") Date fecha2);
     
+    //@Query(value = "SELECT h.* FROM History h WHERE h.date BETWEEN :fecha1 AND :fecha2", nativeQuery= true)
+    //List<History> findVaccinesBetween(@Param("fecha1") Date fecha1, @Param("fecha2") Date fecha2);
 
 
 }

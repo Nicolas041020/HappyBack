@@ -13,7 +13,10 @@ public interface UserRepository extends JpaRepository<User,Integer> {
     User findByEmail(String email);
     User findByUsername(String username);
 
-    @Query(value = "SELECT u FROM User u WHERE u.id IN (SELECT p.user_id FROM Pet p GROUP BY p.user_id ORDER BY COUNT(p.user_id) DESC)",nativeQuery = true)
+    //@Query(value = "SELECT u FROM User u WHERE u.id IN (SELECT p.user_id FROM Pet p GROUP BY p.user_id ORDER BY COUNT(p.user_id) DESC)",nativeQuery = true)
+    //List<User> getUserByMostPets();
+
+    @Query(value = "Select u.* From user_t u JOIN pet p ON u.user_id = p.user_id GROUP BY u.user_id ORDER BY COUNT(p.user_id) DESC", nativeQuery = true)
     List<User> getUserByMostPets();
 
 

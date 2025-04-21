@@ -2,7 +2,9 @@ package happy.paws.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -41,7 +43,9 @@ public class Pet {
     private double age;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonIgnore
+    //@JsonIgnore
+    //@JsonBackReference
+    @JsonIgnoreProperties("pets")
     private User user;
     @OneToMany(mappedBy = "pet",cascade = CascadeType.REMOVE)
     @JsonIgnore
