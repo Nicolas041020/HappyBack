@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import happy.paws.model.Paseador;
 import happy.paws.model.Request;
+import happy.paws.model.User;
 import happy.paws.services.RequestService;
 
 @RestController
@@ -45,5 +46,19 @@ public class RequestController {
         List<Paseador> list = requestService.getNoRelRech(user_id);
         if (list!=null) return ResponseEntity.ok(list);
         return null;
+    }
+
+    @GetMapping("/msgP/{pas_id}")
+    public ResponseEntity<Integer> pendingmsg(@PathVariable("pas_id") int pas_id){
+        int num = requestService.pendmsg(pas_id);
+        return ResponseEntity.ok(num);
+    }
+
+    @GetMapping("/accept/{pas_id}")
+    public ResponseEntity<List<User>> getUserAccepted(@PathVariable("pas_id") int pas_id){
+        List<User> lis = requestService.getUsersAcceptedByPas(pas_id);
+        if (lis!=null) {
+            return ResponseEntity.ok(lis);
+        }return null;
     }
 }

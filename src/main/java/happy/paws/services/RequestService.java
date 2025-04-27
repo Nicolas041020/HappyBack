@@ -93,4 +93,12 @@ public class RequestService {
     // 4) Recuperar en batch todos los paseadores cuyas PK estén en todosLosIds
     return paseadorRepository.findAllById(todosLosIds);
     }
+
+    public Integer pendmsg(int pas_id){
+      return requestRepository.findNumNotAccepted(pas_id);
+    }
+
+    public List<User> getUsersAcceptedByPas(int pas_id){
+      return requestRepository.getPaseadoresAceptadosUser(pas_id);
+    }
 }

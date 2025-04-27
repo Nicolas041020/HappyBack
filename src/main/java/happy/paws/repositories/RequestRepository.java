@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import happy.paws.model.Paseador;
 import happy.paws.model.Request;
+import happy.paws.model.User;
 
 public interface RequestRepository extends JpaRepository <Request,Integer> {
 
@@ -21,4 +22,10 @@ public interface RequestRepository extends JpaRepository <Request,Integer> {
 
     @Query(value = "SELECT p.id FROM Paseador p WHERE p.id NOT IN ( SELECT r.paseador_id FROM REQUEST r WHERE r.usuario_id = :userId)",nativeQuery = true)
     List<Integer> findNoRela(@Param("userId") Integer userId);
+
+    @Query(value="SELECT COUNT(*) FROM REQUEST p WHERE p.paseador_id = :pasId AND p.estado = 0", nativeQuery = true)
+    Integer findNumNotAccepted(@Param("pasId") Integer pasId);
+
+    @Query(value="SELECT DISTINCT m.* FROM USER_T m INNER JOIN REQUEST r on m.user_id = r.usuario_id WHERE r.paseador_id = :pasId AND r.estado = 1",nativeQuery = true)
+    List<User> getPaseadoresAceptadosUser(@Param("pasId") Integer pasId);
 }
