@@ -53,6 +53,7 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy = "destinatarioUsuario")
     private List<Mensaje> mensajesRecibidos;
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Request> requests;
 

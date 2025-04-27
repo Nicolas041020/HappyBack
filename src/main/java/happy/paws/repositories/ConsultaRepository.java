@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import happy.paws.model.Consulta;
-import happy.paws.model.History;
 import happy.paws.model.Pet;
 
 public interface ConsultaRepository extends JpaRepository<Consulta,Integer>{

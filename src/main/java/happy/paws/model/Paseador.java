@@ -37,6 +37,7 @@ public class Paseador {
     @JsonIgnore
     @OneToMany(mappedBy = "destinatarioPaseador")
     private List<Mensaje> mensajesRecibidos =  new ArrayList<>();
+    @JsonIgnore
     @OneToMany(mappedBy = "paseador", cascade = CascadeType.ALL)
     private List<Request> requests;
 

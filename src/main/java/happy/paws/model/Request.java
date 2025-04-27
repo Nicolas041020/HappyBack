@@ -26,10 +26,13 @@ public class Request {
 
     private String contenido;
 
-    public Request(Paseador paseador, User usuario, String contenido) {
-        this.paseador = paseador;
-        this.usuario = usuario;
+    private int estado;
+
+    
+
+    public Request(String contenido, int estado) {
         this.contenido = contenido;
+        this.estado = estado;
     }
 
     public Request() {
@@ -65,6 +68,14 @@ public class Request {
 
     public void setContenido(String contenido) {
         this.contenido = contenido;
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 
 
