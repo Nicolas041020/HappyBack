@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.catalina.connector.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -53,6 +54,30 @@ public class RequestController {
         int num = requestService.pendmsg(pas_id);
         return ResponseEntity.ok(num);
     }
+
+    @GetMapping("/requestPending/{pas_id}")
+    public ResponseEntity<List<Request>> pendingRequest(@PathVariable("pas_id") int pas_id){
+        List<Request> list = requestService.pendRequest(pas_id);
+        if (list!=null) return ResponseEntity.ok(list);
+        return null;
+    }
+
+    @PatchMapping("/edit/{req_id}/{code}")
+    public ResponseEntity<Request> edit(@PathVariable("req_id") int req_id,@PathVariable("code") int code){
+        Request req = requestService.editReq(req_id, code);
+        if (req!= null) {
+            return ResponseEntity.ok(req);
+        }return ResponseEntity.badRequest().build();
+    }
+
+    @GetMapping("/getRequest/{userId}")
+    public ResponseEntity<List<Request>> getRequestUser(@PathVariable("userId") int userId){
+        List<Request> lis = requestService.requestOfUser(userId);
+        if (lis!=null) {
+            return ResponseEntity.ok(lis);
+        }return null;
+    }
+
 
     @GetMapping("/accept/{pas_id}")
     public ResponseEntity<List<User>> getUserAccepted(@PathVariable("pas_id") int pas_id){

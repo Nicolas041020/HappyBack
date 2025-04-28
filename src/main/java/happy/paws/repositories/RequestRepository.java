@@ -28,4 +28,10 @@ public interface RequestRepository extends JpaRepository <Request,Integer> {
 
     @Query(value="SELECT DISTINCT m.* FROM USER_T m INNER JOIN REQUEST r on m.user_id = r.usuario_id WHERE r.paseador_id = :pasId AND r.estado = 1",nativeQuery = true)
     List<User> getPaseadoresAceptadosUser(@Param("pasId") Integer pasId);
+
+    @Query(value="SELECT r.* FROM REQUEST r WHERE r.paseador_id = :pasId AND r.estado = 0",nativeQuery = true)
+    List<Request> findRequestToAccept(@Param("pasId") Integer pasId);
+
+    @Query(value="SELECT r.* FROM REQUEST r WHERE r.usuario_id = :userId",nativeQuery = true)
+    List<Request> findRequestOfUser(@Param("userId") Integer userId);
 }

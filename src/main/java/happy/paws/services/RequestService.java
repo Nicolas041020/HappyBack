@@ -80,22 +80,40 @@ public class RequestService {
         //return null;
           // 1) IDs rechazados
 
-    List<Integer> rechazados = requestRepository.findPaseadoresRechazadosByUsuario(userId);
-    // 2) IDs sin relación
-    List<Integer> sinRelacion = requestRepository.findNoRela(userId);
+      List<Integer> rechazados = requestRepository.findPaseadoresRechazadosByUsuario(userId);
+      // 2) IDs sin relación
+      List<Integer> sinRelacion = requestRepository.findNoRela(userId);
 
-    // 3) Unir ambas listas y eliminar duplicados
-    List<Integer> todosLosIds = Stream
-        .concat(rechazados.stream(), sinRelacion.stream())
-        .distinct()
-        .collect(Collectors.toList());
+      // 3) Unir ambas listas y eliminar duplicados
+      List<Integer> todosLosIds = Stream
+          .concat(sinRelacion.stream(), rechazados.stream())
+          //.concat(rechazados.stream(), sinRelacion.stream())
+          .distinct()
+          .collect(Collectors.toList());
 
-    // 4) Recuperar en batch todos los paseadores cuyas PK estén en todosLosIds
-    return paseadorRepository.findAllById(todosLosIds);
+      // 4) Recuperar en batch todos los paseadores cuyas PK estén en todosLosIds
+      return paseadorRepository.findAllById(todosLosIds);
     }
 
     public Integer pendmsg(int pas_id){
       return requestRepository.findNumNotAccepted(pas_id);
+    }
+
+    public List<Request> pendRequest(int pas_id){
+      return requestRepository.findRequestToAccept(pas_id);
+    }
+
+    public Request editReq(int req_id, int editNum){
+      Request req = requestRepository.findById(req_id).orElse(null);
+      if (editNum == -1 || editNum == 0 || editNum == 1) {
+        req.setEstado(editNum);
+        return requestRepository.save(req);
+        }
+      return null;
+    }
+
+    public List<Request> requestOfUser(int userId){
+      return requestRepository.findRequestOfUser(userId);
     }
 
     public List<User> getUsersAcceptedByPas(int pas_id){
