@@ -56,6 +56,9 @@ public class Pet {
     @OneToMany(mappedBy = "pet",cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<Recordatory> recordatories;
+    @OneToMany(mappedBy = "pet_id", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<Recorrido> recorridos;
 
 
 
@@ -187,6 +190,14 @@ public class Pet {
 
     public void setAge(double age) {
         this.age = age;
+    }
+
+    public List<Recorrido> getRecorridos() {
+        return recorridos;
+    }
+
+    public void setRecorridos(List<Recorrido> recorridos) {
+        this.recorridos = recorridos;
     }
 
     
