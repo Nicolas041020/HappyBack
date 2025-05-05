@@ -3,6 +3,7 @@ package happy.paws.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,15 +21,27 @@ public class RecorridoController {
         this.recorridoService = recorridoService;
     }
 
-    @PostMapping("/add")
-    private ResponseEntity<Recorrido> add(@RequestBody Recorrido rec){
-        Recorrido reco = recorridoService.add(rec);
-        if (reco!=null) {
-            return ResponseEntity.ok(reco);
-        }
-        return ResponseEntity.badRequest().build();
+   // @PostMapping("/add")
+   // private ResponseEntity<Recorrido> add(@RequestBody Recorrido rec){
+   //     Recorrido reco = recorridoService.add(rec);
+   //     if (reco!=null) {
+   //         return ResponseEntity.ok(reco);
+   //     }
+   //     return ResponseEntity.badRequest().build();
         
-    }
+   // }
+
+   @PutMapping("/actualizar")
+    public ResponseEntity<Void> actualizarUbicacion(@RequestBody Recorrido recorrido) {
+    recorridoService.actualizarUbicacion(
+        recorrido.getId(),
+        recorrido.getPet_id(),  
+        recorrido.getLat(),
+        recorrido.getLon()
+    );
+    return ResponseEntity.ok().build();
+}
+
 
     @GetMapping("/recorrido")
     private ResponseEntity<Recorrido> getLast(){
