@@ -37,8 +37,8 @@ public class RequestService {
 
     public Request crear(Request request, int user_id,int paseador_id){
 
-        Paseador pas = paseadorRepository.findById(user_id).orElse(null);
-        User us = userRepository.findById(paseador_id).orElse(null);
+        Paseador pas = paseadorRepository.findById(paseador_id).orElse(null);
+        User us = userRepository.findById(user_id).orElse(null);
         if (pas != null && us != null) {
             request.setPaseador(pas);
             request.setUsuario(us);

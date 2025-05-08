@@ -29,7 +29,7 @@ public class RequestController {
 
     @PostMapping("/create/{user_id}/{paseador_id}")
     public ResponseEntity<Request> crearReq(@RequestBody Request request, @PathVariable("user_id") int user_id,@PathVariable("paseador_id") int paseador_id){
-        Request req = requestService.crear(request, user_id,paseador_id);
+        Request req = requestService.crear(request, user_id, paseador_id);
         if (req!=null) return ResponseEntity.ok(req);
         return null;
     }    
