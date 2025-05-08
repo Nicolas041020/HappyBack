@@ -1,5 +1,8 @@
 package happy.paws.model;
 
+import java.security.Timestamp;
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,6 +30,8 @@ public class Request {
     private String contenido;
 
     private int estado;
+
+    private LocalDateTime Date;
 
     
 
@@ -78,6 +83,16 @@ public class Request {
         this.estado = estado;
     }
 
+    public LocalDateTime getDate() {
+        return Date;
+    }
 
+    public void setDate(LocalDateTime date) {
+        Date = date;
+    }
+
+    
+
+    
     
 }

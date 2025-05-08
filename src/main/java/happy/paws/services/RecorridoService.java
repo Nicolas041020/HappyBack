@@ -30,16 +30,16 @@ public class RecorridoService {
 
 
    public void actualizarUbicacion(int idRecorrido, Pet pet, Double latitud, Double longitud) {
-        Recorrido recorrido = recorridoRepository.findById(idRecorrido)
+    Recorrido recorrido = recorridoRepository.findById(idRecorrido)
         .orElseThrow(() -> new RuntimeException("Recorrido no encontrado"));
-        //Pet pet = petRepository.findById(idMascota).orElseThrow(() -> new RuntimeException("Mascota no encontrada"));
+    //Pet pet = petRepository.findById(idMascota).orElseThrow(() -> new RuntimeException("Mascota no encontrada"));
 
-        recorrido.setLat(latitud);
-        recorrido.setLon(longitud);
-        recorrido.setPet_id(pet);
+    recorrido.setLat(latitud);
+    recorrido.setLon(longitud);
+    recorrido.setPet_id(pet);
 
-        recorridoRepository.save(recorrido);
-    }
+    recorridoRepository.save(recorrido);
+}
 
 
     public Recorrido getLast(){

@@ -1,6 +1,7 @@
 package happy.paws.services;
 
 import java.net.PasswordAuthentication;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,9 +38,10 @@ public class RequestService {
 
     public Request crear(Request request, int user_id,int paseador_id){
 
-        Paseador pas = paseadorRepository.findById(paseador_id).orElse(null);
-        User us = userRepository.findById(user_id).orElse(null);
+        Paseador pas = paseadorRepository.findById(user_id).orElse(null);
+        User us = userRepository.findById(paseador_id).orElse(null);
         if (pas != null && us != null) {
+            request.setDate(LocalDateTime.now());
             request.setPaseador(pas);
             request.setUsuario(us);
             return requestRepository.save(request);
@@ -118,5 +120,15 @@ public class RequestService {
 
     public List<User> getUsersAcceptedByPas(int pas_id){
       return requestRepository.getPaseadoresAceptadosUser(pas_id);
+    }
+
+    public List<Paseador> getPaseLike(String name){
+      return requestRepository.findPaseadoresLikee(name);
+    }
+
+    public Request delete(int id){
+      Request req = requestRepository.findById(id).orElse(null);
+      requestRepository.delete(req);
+      return req;
     }
 }

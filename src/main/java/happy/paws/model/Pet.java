@@ -59,6 +59,9 @@ public class Pet {
     @OneToMany(mappedBy = "pet_id", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<Recorrido> recorridos;
+    @OneToMany(mappedBy = "pet_id",cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<RitmoCardiaco> ritmoCardiaco;
 
 
 

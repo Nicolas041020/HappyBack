@@ -33,14 +33,14 @@ public class RecorridoController {
 
    @PutMapping("/actualizar")
     public ResponseEntity<Void> actualizarUbicacion(@RequestBody Recorrido recorrido) {
-        recorridoService.actualizarUbicacion(
-            recorrido.getId(),
-            recorrido.getPet_id(),  
-            recorrido.getLat(),
-            recorrido.getLon()
-        );
-        return ResponseEntity.ok().build();
-    }
+    recorridoService.actualizarUbicacion(
+        recorrido.getId(),
+        recorrido.getPet_id(),  
+        recorrido.getLat(),
+        recorrido.getLon()
+    );
+    return ResponseEntity.ok().build();
+}
 
 
     @GetMapping("/recorrido")

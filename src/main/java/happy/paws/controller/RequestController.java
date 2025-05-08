@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.catalina.connector.Response;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +30,7 @@ public class RequestController {
 
     @PostMapping("/create/{user_id}/{paseador_id}")
     public ResponseEntity<Request> crearReq(@RequestBody Request request, @PathVariable("user_id") int user_id,@PathVariable("paseador_id") int paseador_id){
-        Request req = requestService.crear(request, user_id, paseador_id);
+        Request req = requestService.crear(request, user_id,paseador_id);
         if (req!=null) return ResponseEntity.ok(req);
         return null;
     }    
@@ -75,7 +76,7 @@ public class RequestController {
         List<Request> lis = requestService.requestOfUser(userId);
         if (lis!=null) {
             return ResponseEntity.ok(lis);
-        }return null;
+        }return ResponseEntity.badRequest().build();
     }
 
 
@@ -85,5 +86,22 @@ public class RequestController {
         if (lis!=null) {
             return ResponseEntity.ok(lis);
         }return null;
+    }
+    // filtrado por secuencia de caracteres
+    @GetMapping("filter/{name}")
+    public ResponseEntity<List<Paseador>> getPasLike(@PathVariable("name") String name){
+        List<Paseador> lst = requestService.getPaseLike(name);
+        if (lst!=null) {
+            return ResponseEntity.ok(lst);
+        }return ResponseEntity.badRequest().build();
+    }
+
+    //use este para borrar el request despues de q pase 1 min
+    @DeleteMapping("/del/{id}")
+    public ResponseEntity<Void> DeleteReq(@PathVariable("id") int id){
+        Request req = requestService.delete(id);
+        if (req!=null) {
+            return ResponseEntity.ok().build();
+        }return ResponseEntity.badRequest().build();
     }
 }

@@ -34,4 +34,14 @@ public interface RequestRepository extends JpaRepository <Request,Integer> {
 
     @Query(value="SELECT r.* FROM REQUEST r WHERE r.usuario_id = :userId",nativeQuery = true)
     List<Request> findRequestOfUser(@Param("userId") Integer userId);
+
+   // @Query(value = "SELECT DISTINCT p.* FROM Paseador p JOIN REQUEST r ON p.id = r.paseador_id WHERE p.name ILIKE '%' || :nombre || '%'",nativeQuery = true)
+   // List<Paseador> findPaseadoresLikee(@Param("nombre") String nombre);
+
+   @Query(value =
+  "SELECT DISTINCT p.* FROM paseador p LEFT JOIN request r ON p.id = r.paseador_id WHERE (r.estado = -1 OR r.paseador_id IS NULL) AND p.name ILIKE '%' || :nombre || '%'",
+  nativeQuery = true
+)
+List<Paseador> findPaseadoresLikee(@Param("nombre") String nombre);
+
 }
