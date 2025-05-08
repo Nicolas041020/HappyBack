@@ -2,8 +2,10 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/Pet
     username: postgres
-    password: nico
+    password: guntersitoSQL
     driver-class-name: org.postgresql.Driver
+  banner:
+    charset: UTF-8
   jpa:
     hibernate:
       ddl-auto: update
