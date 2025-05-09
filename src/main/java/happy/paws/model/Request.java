@@ -3,8 +3,6 @@ package happy.paws.model;
 import java.security.Timestamp;
 import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -33,8 +31,9 @@ public class Request {
 
     private int estado;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    private LocalDateTime date;
+    private LocalDateTime Date;
+
+    
 
     public Request(String contenido, int estado) {
         this.contenido = contenido;
@@ -85,11 +84,15 @@ public class Request {
     }
 
     public LocalDateTime getDate() {
-        return date;
+        return Date;
     }
 
     public void setDate(LocalDateTime date) {
-        this.date = date;
+        Date = date;
     }
 
+    
+
+    
+    
 }

@@ -29,7 +29,7 @@ public class RequestController {
     }
 
     @PostMapping("/create/{user_id}/{paseador_id}")
-    public ResponseEntity<Request> crearReq(@RequestBody Request request, @PathVariable("user_id") int user_id,@PathVariable("paseador_id") int paseador_id){
+    public ResponseEntity<Request> crearReq(@RequestBody Request request, @PathVariable("user_id") int user_id,@PathVariable("paseador_id") int paseador_id) throws Exception{
         Request req = requestService.crear(request, user_id,paseador_id);
         if (req!=null) return ResponseEntity.ok(req);
         return null;
@@ -98,7 +98,7 @@ public class RequestController {
 
     //use este para borrar el request despues de q pase 1 min
     @DeleteMapping("/del/{id}")
-    public ResponseEntity<Void> deleteReq(@PathVariable("id") int id){
+    public ResponseEntity<Void> DeleteReq(@PathVariable("id") int id){
         Request req = requestService.delete(id);
         if (req!=null) {
             return ResponseEntity.ok().build();

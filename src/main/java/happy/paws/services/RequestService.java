@@ -15,6 +15,7 @@ import happy.paws.model.User;
 import happy.paws.repositories.PaseadorRepository;
 import happy.paws.repositories.RequestRepository;
 import happy.paws.repositories.UserRepository;
+import jakarta.mail.MessagingException;
 
 @Service
 public class RequestService {
@@ -25,25 +26,37 @@ public class RequestService {
 
     private UserRepository userRepository;
 
+    private EmailService emailService;
+
     
 
     public RequestService(RequestRepository requestRepository, PaseadorRepository paseadorRepository,
-            UserRepository userRepository) {
+            UserRepository userRepository, EmailService emailService) {
         this.requestRepository = requestRepository;
         this.paseadorRepository = paseadorRepository;
         this.userRepository = userRepository;
+        this.emailService = emailService;
     }
 
 
 
-    public Request crear(Request request, int user_id, int paseador_id){
+    public Request crear(Request request, int user_id,int paseador_id) throws Exception{
 
-        Paseador pas = paseadorRepository.findById(paseador_id).orElse(null);
-        User us = userRepository.findById(user_id).orElse(null);
+        Paseador pas = paseadorRepository.findById(user_id).orElse(null);
+        User us = userRepository.findById(paseador_id).orElse(null);
         if (pas != null && us != null) {
             request.setDate(LocalDateTime.now());
             request.setPaseador(pas);
             request.setUsuario(us);
+          String destinatario = pas.getEmail();
+            String asunto = "Solicitud de Paseo de :" + us.getFirstname();
+            String cuerpo = "<h1>¡Tienes una nueva solicitud!</h1>" +
+                         "<p><strong>" + request.getContenido() + "Solicitud creada el :" + request.getDate() + ".</strong></p>";
+            try {
+            emailService.sendEmail(destinatario, asunto, cuerpo);
+        } catch (MessagingException e) {
+            System.out.println("Error al enviar el correo: " + e.getMessage());
+        }
             return requestRepository.save(request);
         }else{
             return null;
