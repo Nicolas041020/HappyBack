@@ -1,6 +1,8 @@
 package happy.paws.services;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ScheduledFuture;
 
@@ -42,6 +44,11 @@ public class RitmoCardiacoService {
         ritmo.setDate(LocalDateTime.now());
 
         return ritmoRepo.save(ritmo);
+    }
+
+    public Double filtroPorFecha(LocalDate fecha,int petId){
+        Double lista = ritmoRepo.findByDateOnly(fecha,petId);
+        return lista;
     }
 }
 
