@@ -98,7 +98,7 @@ public class RequestController {
 
     //use este para borrar el request despues de q pase 1 min
     @DeleteMapping("/del/{id}")
-    public ResponseEntity<Void> DeleteReq(@PathVariable("id") int id){
+    public ResponseEntity<Void> deleteReq(@PathVariable("id") int id){
         Request req = requestService.delete(id);
         if (req!=null) {
             return ResponseEntity.ok().build();
