@@ -71,7 +71,7 @@ public class RequestController {
         }return ResponseEntity.badRequest().build();
     }
 
-    @GetMapping("/getRequest/{userId}")
+    @GetMapping("/getRequests/{userId}")
     public ResponseEntity<List<Request>> getRequestUser(@PathVariable("userId") int userId){
         List<Request> lis = requestService.requestOfUser(userId);
         if (lis!=null) {
@@ -98,10 +98,19 @@ public class RequestController {
 
     //use este para borrar el request despues de q pase 1 min
     @DeleteMapping("/del/{id}")
-    public ResponseEntity<Void> DeleteReq(@PathVariable("id") int id){
+    public ResponseEntity<Void> deleteReq(@PathVariable("id") int id){
         Request req = requestService.delete(id);
         if (req!=null) {
             return ResponseEntity.ok().build();
         }return ResponseEntity.badRequest().build();
     }
+
+    @GetMapping("/getRequest/{req_id}")
+    public ResponseEntity<Request> getRequest(@PathVariable("req_id") int req_id){
+        Request req = requestService.getRequest(req_id);
+        if (req!=null) return ResponseEntity.ok(req);
+        return null;
+    }
+
+
 }

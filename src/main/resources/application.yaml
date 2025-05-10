@@ -1,8 +1,11 @@
 spring:
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
   datasource:
     url: jdbc:postgresql://localhost:5432/Pet
     username: postgres
-    password: nico
+    password: guntersitoSQL
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:

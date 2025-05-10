@@ -40,16 +40,16 @@ public class RequestService {
 
 
 
-    public Request crear(Request request, int user_id,int paseador_id) throws Exception{
+    public Request crear(Request request, int user_id, int paseador_id) throws Exception{
 
-        Paseador pas = paseadorRepository.findById(user_id).orElse(null);
-        User us = userRepository.findById(paseador_id).orElse(null);
+        Paseador pas = paseadorRepository.findById(paseador_id).orElse(null);
+        User us = userRepository.findById(user_id).orElse(null);
         if (pas != null && us != null) {
             request.setDate(LocalDateTime.now());
             request.setPaseador(pas);
             request.setUsuario(us);
           String destinatario = pas.getEmail();
-            String asunto = "Solicitud de Paseo de :" + us.getFirstname();
+            String asunto = "Solicitud de Paseo de: " + us.getUsername();
             String cuerpo = "<h1>¡Tienes una nueva solicitud!</h1>" +
                          "<p><strong>" + request.getContenido() + "Solicitud creada el :" + request.getDate() + ".</strong></p>";
             try {
@@ -142,6 +142,11 @@ public class RequestService {
     public Request delete(int id){
       Request req = requestRepository.findById(id).orElse(null);
       requestRepository.delete(req);
+      return req;
+    }
+
+    public Request getRequest(int req_id){
+      Request req = requestRepository.findById(req_id).orElse(null);
       return req;
     }
 }
