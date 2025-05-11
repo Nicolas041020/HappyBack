@@ -12,10 +12,10 @@ import java.util.concurrent.ScheduledFuture;
 @Service
 public class HeartRateSimulatorService {
 
-     private final Random random = new Random();
-    private final int minBpm    = 60;   // mínimo BPM
-    private final int maxBpm    = 140;  // máximo BPM
-    private final int variacion = 3;    // variación máxima ±3 BPM
+    private final Random random = new Random();
+    private final int minBpm    = 80;   // mínimo BPM
+    private final int maxBpm    = 150;  // máximo BPM
+    private final int variacion = 5;    // variación máxima ±3 BPM
 
     // Estado de pulso por mascota
     private final Map<Integer, Integer> currentBpms = new ConcurrentHashMap<>();

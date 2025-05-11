@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 
+import org.eclipse.angus.mail.iap.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,12 +29,20 @@ public class RitmoCardiacoController {
     }
 
 
+    //@GetMapping("/heart-rate/{dogId}")
+    //public RitmoCardiaco getHeartRate(@PathVariable int dogId) {
+    //    return ritmoService.generarYGuardar(dogId);
+    //}
+
     @GetMapping("/heart-rate/{dogId}")
-public RitmoCardiaco getHeartRate(@PathVariable int dogId) {
-    return ritmoService.generarYGuardar(dogId);
-}
-@GetMapping("/filtro/{petId}/{fecha}")
-public ResponseEntity<Double> getByFecha(
+    public ResponseEntity<RitmoCardiaco> getHeartRate(@PathVariable int dogId) {
+        RitmoCardiaco rit = ritmoService.generarYGuardar(dogId);
+        if (rit!=null) return ResponseEntity.ok(rit);
+        return null;
+    }
+
+    @GetMapping("/filtro/{petId}/{fecha}")
+    public ResponseEntity<Double> getByFecha(
             @PathVariable("fecha") String fechaStr, @PathVariable("petId") int petId) {
         try {
             // Parseo de String a LocalDate

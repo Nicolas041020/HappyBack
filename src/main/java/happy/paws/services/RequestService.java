@@ -48,10 +48,20 @@ public class RequestService {
             request.setDate(LocalDateTime.now());
             request.setPaseador(pas);
             request.setUsuario(us);
-          String destinatario = pas.getEmail();
+            String destinatario = pas.getEmail();
+            String fecha = request.getDate().toString();
+            String arr[] = fecha.split("T");
+            String hora = arr[1].substring(0, 8);
             String asunto = "Solicitud de Paseo de: " + us.getUsername();
-            String cuerpo = "<h1>¡Tienes una nueva solicitud!</h1>" +
-                         "<p><strong>" + request.getContenido() + "Solicitud creada el :" + request.getDate() + ".</strong></p>";
+
+            String cuerpo = ""
+                    + "<h1>¡Tienes una nueva solicitud!</h1>"
+                    + "<p><strong>" + request.getContenido() + "</strong></p>"
+                    + "<p>Solicitud creada el: " + arr[0] 
+                    + " a las " + hora + ".</p>";
+
+            //String cuerpo = "<h1>¡Tienes una nueva solicitud!</h1><br/>" +
+            //             "<p><strong>" + request.getContenido() + "<br/>Solicitud creada el: " + fecha + " a las " + hora + ".</strong></p><br/>";
             try {
             emailService.sendEmail(destinatario, asunto, cuerpo);
         } catch (MessagingException e) {

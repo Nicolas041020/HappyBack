@@ -2,6 +2,8 @@ package happy.paws.model;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +24,8 @@ public class RitmoCardiaco {
 
     private int valor;
 
-    private LocalDateTime Date;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private LocalDateTime date;
 
     @ManyToOne()
     @JoinColumn(name = "pet_id")
@@ -45,11 +48,11 @@ public class RitmoCardiaco {
     }
 
     public LocalDateTime getDate() {
-        return Date;
+        return date;
     }
 
     public void setDate(LocalDateTime date) {
-        Date = date;
+        this.date = date;
     }
 
     public Pet getPet_id() {
