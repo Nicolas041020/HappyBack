@@ -50,7 +50,8 @@ public class RitmoCardiacoController {
 
             // Llamada al servicio que filtra por LocalDate
             Double resultados = ritmoService.filtroPorFecha(fecha,petId);
-            return ResponseEntity.ok(resultados);
+            if (resultados!=null) return ResponseEntity.ok(resultados);
+            return ResponseEntity.noContent().build();
 
         } catch (DateTimeParseException ex) {
             // Si el formato no coincide con "yyyy-MM-dd"
