@@ -55,8 +55,8 @@ public class PetController {
         return ResponseEntity.ok(petService.getPetById(id_pet));
     }
 
-    @GetMapping("/getAllPets")
-    public ResponseEntity<List<Pet>> getAllPets(){
+    @GetMapping("/getAllPetsT")
+    public ResponseEntity<List<Pet>> getAllPetsT(){
         return ResponseEntity.ok(petService.getAllPetsT());
     }
     
